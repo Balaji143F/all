@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<style type="text/css" media="all">
+		*{
+			margin: 0;
+			padding: 0;
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			box-sizing: border-box;
+		}
+		body{
+			width: 100vw;
+			height: 100svh;
+			background: #fff;
+			padding: 1em;
+			display: grid;
+			place-items: center;
+		}
+		.cont{
+			width: 100%;
+			max-width: max-content;
+			height: 350px;
+			/*aspect-ratio: 1/1;
+			outline: 2px solid red;*/
+			padding: 1em;
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-evenly;
+			align-content: space-evenly;
+			gap: 1em;
+			
+		}
+		.box{
+			width: 140px;
+			height: 140px;
+			/*outline: 1px solid blue;*/
+			
+			display: grid;
+			place-items: center;
+			
+			transform-style: preserve-3d;
+			perspective: 500px;
+			
+			
+		}
+		.box:nth-child(1){
+			--gradient: linear-gradient(-45deg, #00D241, #CAC000);
+			
+		}
+		.box:nth-child(2){
+			--gradient: linear-gradient(-45deg, #00CDFF, #FF00FC);
+			
+		}
+		.box:nth-child(3){
+			--gradient: linear-gradient(-45deg, #7A00FF, #FF0049);
+			
+		}
+		.box:nth-child(4){
+			--gradient: linear-gradient(-45deg, #FFDD00, #FF5A00);
+			
+		}
+		
+		.inner{
+			/*outline: 2px solid red;*/
+			--trans: .75s ease-in-out .15s;
+			position: relative;
+			
+			width: 100%;
+			height: 100%;
+			
+			transform-style: preserve-3d;
+			perspective: 500px;
+			
+			transform: rotatey(0deg);
+			
+			transition: var(--trans);
+		}
+		.box:nth-child(1) .inner::before{
+			content: 'Minecraft';
+		}
+		.box:nth-child(2) .inner::before{
+			content: 'Fortnight';
+		}
+		.box:nth-child(3) .inner::before{
+			content: 'Free Fire';
+		}
+		.box:nth-child(4) .inner::before{
+			content: 'PUBG';
+		}
+		
+		.inner::before{
+			font-family: Monospace;
+			display: grid;
+			place-items: center;
+			transform: translatez(30px);
+			position: absolute;
+			color: #00000000;
+			inset: 10px;
+			background: rgba(0,0,0,0);
+			transition: .25s ease-in-out;
+		}
+		.inner:hover::before{
+			background: rgba(0,0,0,.5);
+			color: #fff;
+		}
+		.inner > *{
+			position: absolute;
+		}
+		.inner img{
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+		.bg{
+			background: rgba(0,0,0,.55);
+			transform: translatez(-1px);
+			inset: 0;
+			
+		}
+		.inner .content{
+			color: #fff;
+			
+			
+			border-radius: 10px;
+			overflow: hidden;
+			
+			padding: 7px;
+			
+			top: 25%;
+			bottom: 25%;
+			left: 0;
+			right: 0%;
+			
+			transform: translatez(-50px) rotatey(180deg);		
+			transition: var(--trans);
+		}
+		.inner .content h3,
+		.inner .content p{
+			font-family: 'Monospace', cursive;
+			font-size: .55rem;
+			font-weight: 900;
+		}
+		.inner .content h3{
+			letter-spacing: -.5px;
+			
+		}
+		.inner .content p{
+			font-family: cursive;	
+		}
+		.box:hover .inner{
+			transform: rotatey(180deg);
+			
+		}
+		.box:hover .inner .content{
+			scale: 1.25;
+			top: 5%;
+			bottom: 40%;
+		}
+		
+		
+		.box:nth-child(1) .inner .content{
+			background: var(--gradient);
+			
+		}
+		.box:nth-child(2) .inner .content{
+			background: var(--gradient);
+			
+		}
+		.box:nth-child(3) .inner .content{
+			background: var(--gradient);
+			
+		}
+		.box:nth-child(4) .inner .content{
+			background: var(--gradient);
+			
+		}
+		
+		.box .inner .content::before{
+			content: '';
+			position: absolute;
+			z-index: -1;
+			transform: rotate(0deg);
+			top: -30px;
+			
+		}
+		
+		
+		.box:nth-child(1) .inner .content::before{
+		
+			right: 0;
+			width: 20px;
+			height: 20px;
+			background: #00F0FF;
+			
+			animation: box 7s linear infinite alternate;
+		}
+		@keyframes box{
+			to{
+				transform: rotate(-3turn);
+				right: 100px;
+				top: 80px;
+			}
+		}
+		
+	.box:nth-child(2) .inner .content::before{
+			right: 0;
+			width: 0;
+			height: 0;
+			
+			border: 10px solid red;
+			border-top-color: transparent;
+			border-left-color: transparent;
+			border-right-color: transparent;
+			transform: rotatey(180deg);
+			
+			animation: trinagle 7s linear infinite alternate;
+		}
+		@keyframes trinagle{
+			to{
+				transform: rotate(3turn);
+				right: 100px;
+				top: 80px;
+			}
+		}
+		
+		
+		.box:nth-child(3) .inner .content::before{
+			top: -30px;
+			left: 0;
+			width: 20px;
+			height: 20px;
+			border-radius: 50%;
+			background: #9DFF00;
+			
+			animation: circle 7s linear infinite alternate;
+		}
+		@keyframes circle{
+			to{
+				left: 100px;
+				top: 80px;
+			}
+		}
+		
+		.box:nth-child(4) .inner .content::before{
+			top: -30px;
+			
+			transform: rotate(0deg);
+			width: 20px;
+			height: 20px;
+			background: #5A00FF;
+			
+			animation: last 7s ease-in-out infinite;
+		}
+		@keyframes last{
+			to{
+				transform: rotate(3turn);
+				top: 80px;
+			}
+		}
+		
+		.matter{
+			position: absolute;
+			bottom: 0;
+			/*outline: 3px solid red;*/
+			transform: rotatey(180deg);
+			display: flex;
+			justify-content: space-around;
+			align-items: center;
+			width: 100%;
+			height: 45px;
+			overflow: hidden;
+			color: #fff;
+		}
+		.matter .one button{
+			--bdr: 7px;
+			border: none;
+			font-size: .65rem;
+			padding: 5px 7px;
+			margin: 5px;
+			color: #fff;
+			border-radius: var(--bdr);
+			background: var(--gradient);
+			position: relative;
+			transition: .25s ease-out;
+		}
+		.matter .one button:active{
+			scale: .8;
+		}
+		.matter .one button::before{
+			position: absolute;
+			content: '';
+			top: 0;
+			left: 0;
+			inset: 0;
+			border-radius: var(--bdr);
+			background: var(--gradient);
+			transition: .5s;
+			z-index: -1;
+			filter: blur(0px);
+		}
+		.matter .one button:hover::before{
+			filter: blur(10px);
+		}
+		.matter .one div{
+			font-size: .65rem;
+			opacity: .75;
+			font-family: Monospace;
+			margin-left: 3px;
+			
+		}
+		
+		
+		.matter .one div span{
+			color: lime;
+		}
+		.matter .two div{
+			font-size: 1rem;
+		}
+		
+	</style>
+</head>
+<body>
+	<div class="cont">
+		
+		
+		<div class="box">
+			
+			<div class="inner">
+				
+				<img src="imgs/Minecraft.jpeg" alt="">
+				
+				<div class="bg">
+					<div class="matter">
+						
+						<div class="one">
+							<button>play now</button>
+							
+						</div>
+						<div class="two">
+							<div>4.6⭐</div>
+						</div>
+						
+					</div>
+				</div>
+				<div class="content">
+					<h3>Minecraft</h3>
+					<p>
+						Open-world <!--snadbox-->game with mining, crafting, exploration, and survival elements.
+					</p>
+				</div>
+			</div>
+			
+		</div>
+		
+		<div class="box">
+			
+			<div class="inner">
+				
+				<img src="imgs/fortnight.jpeg" alt="">
+				
+				<div class="bg">
+					
+					<div class="matter">
+						
+						<div class="one">
+							<button>play now</button>
+							
+						</div>
+						<div class="two">
+							<div>4.5⭐</div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="content">
+					<h3>Fortnight</h3>
+					<p>
+						Survival, shooter game with building and dancing, popular among gamers.
+						
+					</p>
+				</div>
+			</div>
+			
+		</div>
+		
+		<div class="box">
+			
+			<div class="inner">
+				<img src="imgs/freeFire.jpeg" alt="">
+				<div class="bg">
+					
+					
+					<div class="matter">
+						
+						<div class="one">
+							<button>play now</button>
+							
+						</div>
+						<div class="two">
+							<div>4.6⭐</div>
+						</div>
+						
+					</div>
+					
+					
+				</div>
+				<div class="content">
+					<h3>Free fire</h3>
+					<p>
+						Survival shooter game with fast-paced gameplay and battle royale mode.
+					</p>
+				</div>
+			</div>
+			
+		</div>
+		
+		<div class="box">
+			
+			<div class="inner">
+				<img src="imgs/pubg.jpeg" alt="">
+				<div class="bg">
+					
+					
+					<div class="matter">
+						
+						<div class="one">
+							<button>play now</button>
+							
+						</div>
+						<div class="two">
+							<div>4.5⭐</div>
+						</div>
+						
+					</div>
+					
+					
+				</div>
+				<div class="content">
+					<h3>PUBG</h3>
+					<p>
+						"Battle royale game with realistic graphics and intense gameplay."
+					</p>
+				</div>
+			</div>
+			
+		</div>
+		
+		
+		
+	</div>
+</body>
+</html>
